@@ -1,0 +1,37 @@
+import java.math.BigDecimal;
+import java.math.RoundingMode;
+import java.util.ArrayList;
+class Produto {
+private String nome;
+private BigDecimal preco;
+public Produto(String nome, BigDecimal preco) {
+this.nome = nome;
+this.preco = preco;
+}
+public String getNome() {
+return nome;
+}
+public BigDecimal getPreco() {
+return preco;
+}
+@Override
+public String toString() {
+return nome + " - R$ " + preco;
+}
+}
+class ItemCarrinho {
+private Produto produto;
+private int quantidade;
+public ItemCarrinho(Produto produto, int quantidade) {
+this.produto = produto;
+this.quantidade = quantidade;
+}
+public BigDecimal getSubtotal() {
+return produto.getPreco().multiply(new BigDecimal(quantidade));
+}
+@Override
+public String toString() {
+return produto.getNome() + " x " + quantidade + " = R$ " +
+getSubtotal().setScale(2, RoundingMode.HALF_UP);
+}
+}
